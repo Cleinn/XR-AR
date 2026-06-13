@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44e7b90a54443b64282670fcd0e4f635, type: 3}
+  m_Name: TV Table
+  m_EditorClassIdentifier: Assembly-CSharp::FurnitureItem
+  furnitureName: TV Table
+  icon: {fileID: 21300000, guid: fca4b310ff517f7439889f3aae7218d0, type: 3}
+  prefab: {fileID: 2365894623416205756, guid: 09d2e71647c454a49a26b7239f867afe, type: 3}
+  yOffset: 0
