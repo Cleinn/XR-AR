@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1750848898560545014}
   m_Layer: 0
-  m_Name: BathTub_Root
+  m_Name: BathTub01_Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

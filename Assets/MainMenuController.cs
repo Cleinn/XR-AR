@@ -263,7 +263,7 @@ public class MainMenuController : MonoBehaviour
             new Vector2(0.5f, 0.50f), new Vector2(900, 1180));
 
         AddSection(content, "\u2460  BEFORE YOU START",
-            "\u2022  Use the app in a well-lit room . AR needs visible texture and detail to track.\n" +
+            "\u2022  Use the app in a well-lit room. AR needs visible texture and detail to track.\n" +
             "\u2022  Hold your phone up and sweep it slowly across the floor with small side-to-side motions.\n" +
             "\u2022  Wait for the glowing surface grid to appear. That mesh is a detected plane you can place on.");
 
@@ -278,6 +278,11 @@ public class MainMenuController : MonoBehaviour
             "\u2022  Drag with one finger to slide it along the floor.\n" +
             "\u2022  Use two fingers and twist to rotate it to any angle.\n" +
             "\u2022  A quick tap won't nudge it: you must drag past a small threshold, so taps stay clean.");
+
+        AddSection(content, "\u2463  INSPECT A PIECE",
+            "\u2022  Press and hold a placed piece, keeping your finger still, for about a second.\n" +
+            "\u2022  A card pops up showing the item's name and a rotating 3D preview of it.\n" +
+            "\u2022  Tap the X on the card to close it.");
 
         AddSection(content, "\u2463  REMOVE & RESET",
             "\u2022  With a piece selected, tap Delete to remove just that one.\n" +

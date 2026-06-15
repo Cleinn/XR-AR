@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 44e7b90a54443b64282670fcd0e4f635, type: 3}
-  m_Name: Bathtub001
+  m_Name: Gas Stove
   m_EditorClassIdentifier: Assembly-CSharp::FurnitureItem
-  furnitureName: Bathtub
-  icon: {fileID: 21300000, guid: 009623acd02ecb840a3ca1107b6188d8, type: 3}
-  prefab: {fileID: 694663295763264522, guid: fcc1f1fa2fe1014469aec871f75e9a20, type: 3}
+  furnitureName: Gas Stove
+  icon: {fileID: 21300000, guid: 75a41220767d101419df0b4e73de24cb, type: 3}
+  prefab: {fileID: 5135660606861908723, guid: ec8ada1e154ea0846aecb3b1f4780438, type: 3}
   yOffset: 0
