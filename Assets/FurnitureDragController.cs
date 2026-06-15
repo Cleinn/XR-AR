@@ -122,7 +122,12 @@ public class FurnitureDragController : MonoBehaviour
 
             Pose       hitPose  = hits[0].pose;
             Vector3    spawnPos = hitPose.position + new Vector3(0, activeItem.yOffset, 0);
-            GameObject placed   = Instantiate(activeItem.prefab, spawnPos, hitPose.rotation);
+
+            // Keep furniture upright. Use only the yaw (Y) from the plane pose,
+            // not its full orientation, so pieces never tip onto their side.
+            float      yaw       = hitPose.rotation.eulerAngles.y;
+            Quaternion uprightRot = Quaternion.Euler(0f, yaw, 0f);
+            GameObject placed   = Instantiate(activeItem.prefab, spawnPos, uprightRot);
 
             if (placed == null) return;
 

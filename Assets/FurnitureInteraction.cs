@@ -34,6 +34,12 @@ public class FurnitureInteraction : MonoBehaviour
     [Tooltip("Pixels finger must move before object starts moving. Prevents micro movement on tap.")]
     public float movementThreshold = 15f;
 
+    [Header("Hold Preview")]
+    [Tooltip("Popup that shows a rotating 3D preview of a held piece. Auto-created if left empty.")]
+    public FurniturePreviewPopup previewPopup;
+    [Tooltip("Seconds the piece must be held still before the preview card appears.")]
+    public float holdToPreview = 1.2f;
+
     private Material selectionMat;
     private Material placementMat;
 
@@ -45,6 +51,10 @@ public class FurnitureInteraction : MonoBehaviour
     private float previousTouchAngle = 0f;
     private Vector2 touchBeganPos;
 
+    // hold-to-preview state
+    private float heldTime    = 0f;
+    private bool  previewShown = false;
+
     private List<ARRaycastHit> hits = new List<ARRaycastHit>();
 
     private void OnEnable()  { EnhancedTouchSupport.Enable(); }
@@ -54,6 +64,12 @@ public class FurnitureInteraction : MonoBehaviour
     {
         if (arRaycastManager == null)
             arRaycastManager = GetComponent<ARRaycastManager>();
+
+        // Resolve (or create) the preview popup so no manual wiring is required.
+        if (previewPopup == null)
+            previewPopup = FindFirstObjectByType<FurniturePreviewPopup>();
+        if (previewPopup == null)
+            previewPopup = new GameObject("FurniturePreviewPopup").AddComponent<FurniturePreviewPopup>();
 
         if (selectionIndicator != null)
         {
@@ -93,6 +109,7 @@ public class FurnitureInteraction : MonoBehaviour
         if (touchCount >= 2 && selectedObject != null)
         {
             isMoving = false;
+            ResetHold();           // two-finger rotation cancels the hold timer (card stays if open)
             HidePlacement();
             HandleTwoFingerRotation();
             return;
@@ -125,6 +142,7 @@ public class FurnitureInteraction : MonoBehaviour
         }
 
         UpdateSelectionIndicator();
+        UpdateHoldPreview(touchCount);
     }
 
     private void HandleBegan(Vector2 screenPos)
@@ -155,6 +173,10 @@ public class FurnitureInteraction : MonoBehaviour
                 isMoving           = true;
                 movementConfirmed  = false;
                 touchBeganPos      = screenPos;
+
+                // start the hold timer fresh on every fresh press
+                heldTime     = 0f;
+                previewShown = false;
                 return;
             }
         }
@@ -222,6 +244,7 @@ public class FurnitureInteraction : MonoBehaviour
     {
         isMoving          = false;
         movementConfirmed = false;
+        ResetHold();
         HidePlacement();
 
         // Restore selection ring after move ends
@@ -250,6 +273,43 @@ public class FurnitureInteraction : MonoBehaviour
         }
     }
 
+    // ─────────────────────────────────────────────
+    // Hold-to-preview
+    // ─────────────────────────────────────────────
+
+    private void UpdateHoldPreview(int touchCount)
+    {
+        // "Held in one place" = a piece is pressed (isMoving) but the finger
+        // has not crossed the movement threshold yet, single pointer, no rotate.
+        bool holding = selectedObject != null
+                    && selectedFurniture != null
+                    && isMoving
+                    && !movementConfirmed
+                    && !isRotating
+                    && touchCount < 2;
+
+        if (holding)
+        {
+            heldTime += Time.deltaTime;
+            if (!previewShown && heldTime >= holdToPreview)
+            {
+                previewShown = true;
+                if (previewPopup != null) previewPopup.Show(selectedFurniture);
+            }
+        }
+        else
+        {
+            ResetHold();
+        }
+    }
+
+    private void ResetHold()
+    {
+        // Only resets the hold timer/latch. The card is dismissed by its own X button.
+        previewShown = false;
+        heldTime = 0f;
+    }
+
     private void Select(PlacedFurniture pf)
     {
         selectedObject    = pf.gameObject;
@@ -268,6 +328,7 @@ public class FurnitureInteraction : MonoBehaviour
         selectedFurniture = null;
         isMoving          = false;
         isRotating        = false;
+        ResetHold();
         if (selectionIndicator != null) selectionIndicator.SetActive(false);
         HidePlacement();
 
