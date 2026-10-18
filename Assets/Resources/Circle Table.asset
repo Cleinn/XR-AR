@@ -16,3 +16,13 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 1511fcbbd4be973458675166577306b0, type: 3}
   prefab: {fileID: 3201876394459143449, guid: 384f79af94596414ca804183d2ffffff, type: 3}
   yOffset: 0
+  category: Table
+  room: Living Room
+  rating: 4.5
+  reviewCount: 273
+  price: 1150000
+  originalPrice: 0
+  colors:
+  - Natural
+  - Cream
+  buyUrl: 

@@ -16,3 +16,13 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 0a6fca388648a3c43a2a88c68561c8e2, type: 3}
   prefab: {fileID: 3625755287853159073, guid: 704fd9ed4cb12274e9ec912f9bd8c35c, type: 3}
   yOffset: 0
+  category: Chair
+  room: Living Room
+  rating: 4
+  reviewCount: 100
+  price: 500000
+  originalPrice: 600000
+  colors:
+  - Natural
+  - Cream
+  buyUrl: 

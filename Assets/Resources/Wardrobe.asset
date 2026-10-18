@@ -16,3 +16,13 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: b052405af3c198240816e7faa5071c5f, type: 3}
   prefab: {fileID: 8402661469454743242, guid: 29fd031792f957c4fa7731d8c61c886f, type: 3}
   yOffset: 0
+  category: Shelves
+  room: Bedroom
+  rating: 4
+  reviewCount: 255
+  price: 2250000
+  originalPrice: 0
+  colors:
+  - Natural
+  - Cream
+  buyUrl: 

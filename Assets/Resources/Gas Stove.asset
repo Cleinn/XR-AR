@@ -16,3 +16,13 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 75a41220767d101419df0b4e73de24cb, type: 3}
   prefab: {fileID: 5135660606861908723, guid: ec8ada1e154ea0846aecb3b1f4780438, type: 3}
   yOffset: 0
+  category: Kitchen
+  room: Kitchen
+  rating: 4.5
+  reviewCount: 141
+  price: 550000
+  originalPrice: 0
+  colors:
+  - Natural
+  - Cream
+  buyUrl: 
